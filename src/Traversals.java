@@ -42,17 +42,13 @@ public class Traversals {
     if (node == null)
       return 0;
 
-    int leafLeft = sumLeafNodes(node.left);
-    int leafRight = sumLeafNodes(node.right);
+    int leafLeft = countInternalNodes(node.left);
+    int leafRight = countInternalNodes(node.right);
 
-    if (node.left != null && node.right != null || node.left != null && node.right == null
-        || node.left == null && node.right != null) {
-
+    if (node.left != null || node.right != null) {
+      return 1 + leafLeft + leafRight;
     }
-
-    int sum = leafLeft + leafRight;
-
-    return sum + 1;
+    return leafLeft + leafRight;
 
   }
 
