@@ -145,7 +145,21 @@ public class Traversals {
    *         otherwise
    */
   public static boolean hasStrictlyIncreasingPath(TreeNode<Integer> node) {
-    return false;
+    if (node == null)
+      return false;
+    return helper(node, Integer.MIN_VALUE);
+  }
+
+  private static boolean helper(TreeNode<Integer> node, int prev) {
+    if (node == null)
+      return false;
+    if (node.value <= prev)
+      return false;
+
+    if (node.left == null && node.right == null) {
+      return true;
+    }
+    return helper(node.left, node.value) || helper(node.right, node.value);
   }
 
   // OPTIONAL CHALLENGE
